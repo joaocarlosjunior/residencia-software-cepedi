@@ -69,6 +69,6 @@ docker-compose down
 
 - Para construir, (re)criar, iniciar e anexar contêineres para um serviço:
 ```sh
-docker-compose up
+docker-compose up --build
 ```
 
