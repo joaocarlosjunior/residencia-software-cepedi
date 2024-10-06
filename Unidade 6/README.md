@@ -4,16 +4,19 @@
 
 1. **Backend e Frontend**:
 <br/> 
+
     - Você já possui o código da aplicação do backend e frontend, além da configuração do Nginx (nginx.conf).
     - Sua tarefa será criar os Dockerfiles para o backend e frontend e o docker-compose.yml para orquestrar os containers, subindo toda a infraestrutura utilizando Docker.
 2. **Requisitos de Nomeação dos Services**:
 <br/>
+
     - Os serviços definidos no docker-compose.yml devem obrigatoriamente ser nomeados da seguinte forma:
         - O serviço do frontend deve ser chamado de frontend.
         - O serviço do backend deve ser chamado de backend.
         - O serviço do banco de dados MySQL deve ser chamado de db.
 3. **Requisitos para o Backend**:
 <br/>
+
     - O backend deverá rodar na porta 5000 e se comunicar com o banco de dados MySQL.
     - Você deverá utilizar as variáveis de ambiente:
         - DB_HOST: Host do banco de dados.
@@ -24,10 +27,12 @@
         - mysql_password: Senha do usuário padrão do MySQL.
 4. **Requisitos para o Banco de Dados (MySQL 8.0)**:
 <br/>
+
     - O banco de dados MySQL 8.0 deverá ser configurado para utilizar um volume chamado db-data-idade para persistir os dados.
     - O banco de dados será acessado pelo backend para armazenar as informações dos usuários (nome e idade).
     - As senhas do MySQL serão configuradas utilizando secrets (mysql_root_password e mysql_password).
 5. **Requisitos para o Frontend**:
+
     - O frontend será servido pelo Nginx na porta 80, onde os clientes poderão acessar a aplicação web.
     - O Nginx também deverá atuar como proxy reverso, encaminhando as requisições do frontend para o backend na porta 5000.
 
