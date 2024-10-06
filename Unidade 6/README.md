@@ -60,3 +60,15 @@ A comunicação entre o frontend (Nginx) e o backend (Flask) será feita da segu
 5. **Portas**:
     - O backend deverá escutar na porta 5000.
     - O frontend deverá estar disponível na porta 80 para os clientes.
+
+### Executar
+- Para parar e remover contêineres:
+```sh
+docker-compose down
+```
+
+- Para construir, (re)criar, iniciar e anexar contêineres para um serviço:
+```sh
+docker-compose up
+```
+
