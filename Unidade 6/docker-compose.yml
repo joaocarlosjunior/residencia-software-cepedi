@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  db: 
+    image: mysql:8.0
+    container_name: db_atividade-06
+    volumes:
+      - db-data-idade:/var/lib/mysql
+    environment:
+          MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+          MYSQL_DATABASE: users_db
+          MYSQL_USER: user_db
+          MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+    secrets:
+      - mysql_root_password
+      - mysql_password
+    networks:
+      - idade-network
+    ports:
+      - "3306:3306"
+    restart: always
+
+  backend:
+    container_name: backend_atividade-06
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: user_db
+      DB_NAME: users_db
+    ports:
+      - "5000:5000"
+    networks:
+      - idade-network
+    secrets:
+      - mysql_password
+    restart: always
+  
+  frontend:
+    container_name: frontend_atividade-06
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - idade-network
+    restart: always
+
+volumes:
+  db-data-idade:
+
+secrets:
+  mysql_root_password:
+    file: mysql_root_password.txt
+  mysql_password:
+    file: mysql_password.txt
+
+networks:
+  idade-network:
+    driver: bridge
